@@ -1,16 +1,54 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View, ScrollView } from "react-native";
 import { TextInput } from "react-native";
-import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import Btn from "./Btn";
 
 export default function App() {
   const [count, setCount] = useState(0);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
+
+  const [people, setPeople] = useState([
+    { name: "shaun", id: "1" },
+    { name: "yoshi", id: "2" },
+    { name: "mario", id: "3" },
+    { name: "luigi", id: "4" },
+    { name: "peach", id: "5" },
+    { name: "toad", id: "6" },
+    { name: "bowser", id: "7" },
+    { name: "shaun", id: "1" },
+    { name: "yoshi", id: "2" },
+    { name: "mario", id: "3" },
+    { name: "luigi", id: "4" },
+    { name: "peach", id: "5" },
+    { name: "toad", id: "6" },
+    { name: "bowser", id: "7" },
+    { name: "shaun", id: "1" },
+    { name: "yoshi", id: "2" },
+    { name: "mario", id: "3" },
+    { name: "luigi", id: "4" },
+    { name: "peach", id: "5" },
+    { name: "toad", id: "6" },
+    { name: "bowser", id: "7" },
+    { name: "shaun", id: "1" },
+    { name: "yoshi", id: "2" },
+    { name: "mario", id: "3" },
+    { name: "luigi", id: "4" },
+    { name: "peach", id: "5" },
+    { name: "toad", id: "6" },
+    { name: "bowser", id: "7" },
+  ]);
   return (
-    <View style={styles.container}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+      {people.map((item) => {
+        return (
+          <Text style={styles.list} key={item.id}>
+            {item.name}
+          </Text>
+        );
+      })}
+      {/*
       <View style={styles.header}>
         <Text style={styles.bold}>count {count}</Text>
       </View>
@@ -19,7 +57,7 @@ export default function App() {
         <Btn setCount={setCount} count={count} />
       </View>
 
-      <View style={styles.info}>
+        <View style={styles.info}>
         <Text>
           name is {name} and age {age}
         </Text>
@@ -39,7 +77,8 @@ export default function App() {
         onChangeText={(text) => setAge(text)}
         placeholder="age"
       />
-    </View>
+      */}
+    </ScrollView>
   );
 }
 
@@ -48,8 +87,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     margin: 20,
-    //   flex: 1,
-    //   backgroundColor: "#fff",
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingTop: 40,
+    paddingHorizontal: 20,
     //   alignItems: "center",
     //   justifyContent: "center",
     // padding: "2",
@@ -78,6 +119,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#777",
     margin: 5,
+    padding: 10,
+  },
+  list: {
+    fontSize: 14,
+    textAlign: "center",
+    marginVertical: 10,
+    backgroundColor: "aqua",
     padding: 10,
   },
 });
