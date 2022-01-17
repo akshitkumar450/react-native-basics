@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import { TextInput } from "react-native";
 import Btn from "./Btn";
 
@@ -40,45 +47,26 @@ export default function App() {
     { name: "bowser", id: "7" },
   ]);
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-      {people.map((item) => {
-        return (
-          <Text style={styles.list} key={item.id}>
-            {item.name}
-          </Text>
-        );
-      })}
-      {/*
-      <View style={styles.header}>
-        <Text style={styles.bold}>count {count}</Text>
-      </View>
-
-      <View style={styles.btn}>
-        <Btn setCount={setCount} count={count} />
-      </View>
-
-        <View style={styles.info}>
-        <Text>
-          name is {name} and age {age}
-        </Text>
-      </View>
-
-      <TextInput
-        // allows to write multiple line
-        multiline
-        style={styles.input}
-        onChangeText={(text) => setName(text)}
-        placeholder="Name"
+    // <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+    //   {people.map((item) => {
+    //     return (
+    //       <Text style={styles.list} key={item.id}>
+    //         {item.name}
+    //       </Text>
+    //     );
+    //   })}
+    // </ScrollView>
+    <View style={styles.container}>
+      {/**flatlist allows scolling without using scrollView  */}
+      <FlatList
+        data={people}
+        keyExtractor={(item) => item.id} // to use id as key
+        renderItem={({ item }) => {
+          //we have to destructure item
+          return <Text style={styles.text}>{item.name}</Text>;
+        }}
       />
-      <TextInput
-        style={styles.input}
-        // bydeafult it will opne numeric keypad
-        keyboardType="numeric"
-        onChangeText={(text) => setAge(text)}
-        placeholder="age"
-      />
-      */}
-    </ScrollView>
+    </View>
   );
 }
 
@@ -88,7 +76,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 20,
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#777",
     paddingTop: 40,
     paddingHorizontal: 20,
     //   alignItems: "center",
@@ -127,5 +115,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: "aqua",
     padding: 10,
+  },
+  text: {
+    color: "white",
   },
 });
