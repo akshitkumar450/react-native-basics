@@ -7,6 +7,7 @@ import {
   View,
   ScrollView,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 import { TextInput } from "react-native";
 import Btn from "./Btn";
@@ -15,7 +16,7 @@ export default function App() {
   const [count, setCount] = useState(0);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
-
+  const [show, setShow] = useState(false);
   const [people, setPeople] = useState([
     { name: "shaun", id: "1" },
     { name: "yoshi", id: "2" },
@@ -24,28 +25,17 @@ export default function App() {
     { name: "peach", id: "5" },
     { name: "toad", id: "6" },
     { name: "bowser", id: "7" },
-    { name: "shaun", id: "1" },
-    { name: "yoshi", id: "2" },
-    { name: "mario", id: "3" },
-    { name: "luigi", id: "4" },
-    { name: "peach", id: "5" },
-    { name: "toad", id: "6" },
-    { name: "bowser", id: "7" },
-    { name: "shaun", id: "1" },
-    { name: "yoshi", id: "2" },
-    { name: "mario", id: "3" },
-    { name: "luigi", id: "4" },
-    { name: "peach", id: "5" },
-    { name: "toad", id: "6" },
-    { name: "bowser", id: "7" },
-    { name: "shaun", id: "1" },
-    { name: "yoshi", id: "2" },
-    { name: "mario", id: "3" },
-    { name: "luigi", id: "4" },
-    { name: "peach", id: "5" },
-    { name: "toad", id: "6" },
-    { name: "bowser", id: "7" },
   ]);
+
+  const handlePress = (id) => {
+    console.log(id);
+    let temp = [];
+    temp = people.filter((item) => item.id !== id);
+    setPeople(temp);
+    // if (id === 7) {
+    //   setShow(true);
+    // }
+  };
   return (
     // <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
     //   {people.map((item) => {
@@ -63,7 +53,12 @@ export default function App() {
         keyExtractor={(item) => item.id} // to use id as key
         renderItem={({ item }) => {
           //we have to destructure item
-          return <Text style={styles.text}>{item.name}</Text>;
+          return (
+            <TouchableOpacity onPress={() => handlePress(item.id)}>
+              {/**we can't use onpress on text so use Touchable */}
+              <Text style={styles.list}>{item.name}</Text>
+            </TouchableOpacity>
+          );
         }}
       />
     </View>
@@ -76,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 20,
     flex: 1,
-    backgroundColor: "#777",
+    backgroundColor: "#fff",
     paddingTop: 40,
     paddingHorizontal: 20,
     //   alignItems: "center",
@@ -115,6 +110,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: "aqua",
     padding: 10,
+    color: "#000",
   },
   text: {
     color: "white",
