@@ -25,6 +25,11 @@ export const countReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
+    case "ADD":
+      return {
+        ...state,
+        count: action.payload + state.count,
+      };
     default:
       return state;
   }

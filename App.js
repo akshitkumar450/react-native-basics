@@ -12,11 +12,6 @@ import Todos from "./Todos";
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Header />
-        <Todos />
-      </View>
-
       <ReduxCounter />
     </Provider>
   );

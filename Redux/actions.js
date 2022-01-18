@@ -13,6 +13,12 @@ export const reset = () => {
     type: "RE",
   };
 };
+export const add = (val) => {
+  return {
+    type: "ADD",
+    payload: val,
+  };
+};
 
 const savePosts = (data) => {
   return {
