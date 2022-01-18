@@ -11,6 +11,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginVertical: 20,
   },
   header: {
