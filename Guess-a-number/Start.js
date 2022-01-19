@@ -1,33 +1,72 @@
-import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Alert,
+} from "react-native";
 import Card from "./Card";
 import Input from "./Input";
 
 const Start = () => {
+  const [value, setValue] = useState("");
+  const [number, setNumber] = useState(0);
+
+  const handleChange = (val) => {
+    //   only allows number values
+    setValue(+val.replace(/[^0-9]/g, "")); //replace non digit with blank
+  };
+
+  const handleConfirm = () => {
+    if (value === 0) {
+      Alert.alert("OOPS", "please entera valid number", [
+        {
+          text: "ok",
+          onPress: () => setValue(""),
+          style: "destructive",
+        },
+      ]);
+      return;
+    }
+    setNumber(parseInt(+value));
+    setValue("");
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Start a New Game</Text>
-      <Card style={styles.inputContainer}>
-        <Text>Select a Number</Text>
-        <Input
-          // passing the props to component and there we are spreading all these
-          placeholder="enter a number"
-          keyboardType="number"
-          blurOnSubmit
-          autoCapitalize={false}
-          autoCorrect={false}
-          maxLength={2}
-        />
-        <View style={styles.btnContainer}>
-          <View style={styles.btn}>
-            <Button title="reset" color="#c717fc" />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Start a New Game</Text>
+        <Card style={styles.inputContainer}>
+          <Text>Selected a Number {number}</Text>
+          <Input
+            // passing the props to component and there we are spreading all these
+            placeholder="enter a number"
+            keyboardType="number"
+            blurOnSubmit
+            autoCapitalize={false}
+            autoCorrect={false}
+            maxLength={2}
+            value={value}
+            onChangeText={handleChange}
+          />
+          <View style={styles.btnContainer}>
+            <View style={styles.btn}>
+              <Button
+                title="reset"
+                onPress={() => setValue("")}
+                color="#c717fc"
+              />
+            </View>
+            <View style={styles.btn}>
+              <Button title="confirm" onPress={handleConfirm} color="#f72bfb" />
+            </View>
           </View>
-          <View style={styles.btn}>
-            <Button title="confirm" color="#f72bfb" />
-          </View>
-        </View>
-      </Card>
-    </View>
+        </Card>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
