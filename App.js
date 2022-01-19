@@ -1,29 +1,12 @@
-import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { TextInput } from "react-native";
-import { Provider } from "react-redux";
-import Btn from "./Btn";
-import Header from "./Header";
-import { store } from "./Redux/store";
-import ReduxCounter from "./ReduxCounter";
-import Todos from "./Todos";
+import { ScrollView, StyleSheet, Text, View, TextInput } from "react-native";
+import Guess from "./Guess-a-number/Guess";
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <ReduxCounter />
-    </Provider>
+    <View>
+      <Guess />
+    </View>
   );
 }
 
-// for styling
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: "gray",
-  },
-});
+const styles = StyleSheet.create({});
