@@ -11,9 +11,9 @@ import {
 import Card from "./Card";
 import Input from "./Input";
 
-const Start = () => {
+const Start = ({ handleNum, userNum }) => {
   const [value, setValue] = useState("");
-  const [number, setNumber] = useState(0);
+  // const [number, setNumber] = useState(0);
 
   const handleChange = (val) => {
     //   only allows number values
@@ -31,7 +31,7 @@ const Start = () => {
       ]);
       return;
     }
-    setNumber(parseInt(+value));
+    handleNum(parseInt(+value));
     setValue("");
   };
 
@@ -65,10 +65,9 @@ const Start = () => {
             </View>
           </View>
         </Card>
-
         <Card style={styles.numberContainer}>
           <Text>selected number </Text>
-          <Text style={styles.number}>{number}</Text>
+          <Text style={styles.number}>{userNum}</Text>
           <View>
             <Button title="START GAME" color="#f72bfb" />
           </View>
