@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import Card from "./Card";
+import Input from "./Input";
 
 const Start = () => {
   return (
@@ -8,10 +9,22 @@ const Start = () => {
       <Text style={styles.title}>Start a New Game</Text>
       <Card style={styles.inputContainer}>
         <Text>Select a Number</Text>
-        <TextInput />
+        <Input
+          // passing the props to component and there we are spreading all these
+          placeholder="enter a number"
+          keyboardType="number"
+          blurOnSubmit
+          autoCapitalize={false}
+          autoCorrect={false}
+          maxLength={2}
+        />
         <View style={styles.btnContainer}>
-          <Button title="reset" />
-          <Button title="confirm" />
+          <View style={styles.btn}>
+            <Button title="reset" color="#c717fc" />
+          </View>
+          <View style={styles.btn}>
+            <Button title="confirm" color="#f72bfb" />
+          </View>
         </View>
       </Card>
     </View>
@@ -34,9 +47,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     maxWidth: "80%",
   },
+  input: {
+    borderBottomWidth: 1,
+    borderBottomColor: "gray",
+    padding: 5,
+    width: "100%",
+    marginVertical: 15,
+  },
   btnContainer: {
     width: "100%",
     justifyContent: "space-between",
     flexDirection: "row",
+  },
+  btn: {
+    width: 100,
   },
 });
