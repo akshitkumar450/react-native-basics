@@ -40,7 +40,7 @@ const Start = () => {
       <View style={styles.container}>
         <Text style={styles.title}>Start a New Game</Text>
         <Card style={styles.inputContainer}>
-          <Text>Selected a Number {number}</Text>
+          <Text>Select a Number</Text>
           <Input
             // passing the props to component and there we are spreading all these
             placeholder="enter a number"
@@ -63,6 +63,14 @@ const Start = () => {
             <View style={styles.btn}>
               <Button title="confirm" onPress={handleConfirm} color="#f72bfb" />
             </View>
+          </View>
+        </Card>
+
+        <Card style={styles.numberContainer}>
+          <Text>selected number </Text>
+          <Text style={styles.number}>{number}</Text>
+          <View>
+            <Button title="START GAME" color="#f72bfb" />
           </View>
         </Card>
       </View>
@@ -100,5 +108,17 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: 100,
+  },
+  numberContainer: {
+    marginVertical: 20,
+    alignItems: "center",
+  },
+  number: {
+    borderColor: "purple",
+    borderWidth: 3,
+    borderRadius: 10,
+    fontSize: 20,
+    padding: 15,
+    marginVertical: 10,
   },
 });
